@@ -16,6 +16,21 @@
             <td>Modo Transporte</td>
             <td>Numero celular</td>
         </tr>
+        {% for hincha in hinchas %}
+        <tr class="hincha" id="{{hincha[0]}}">
+            <td>{{hincha[2]}}</td>
+            <td>{{hincha[1]}}</td>
+            <td>
+                {% for deporte in deportes %}
+                {% if deporte[1] == hincha[0] %}
+                    <p>{{deporte[0]}}</p>
+                {% endif %}
+                {% endfor %}
+            </td>
+            <td>{{hincha[4]}}</td>
+            <td>{{hincha[3]}}</td>
+        </tr>
+        {% endfor %}
     </table>
     <a class="boton" href=".">Volver a Inicio</a>
 </div>

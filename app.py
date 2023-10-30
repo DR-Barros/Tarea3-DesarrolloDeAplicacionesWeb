@@ -55,7 +55,13 @@ def informacionArtesano(num):
 
 @app.route('/ver-hinchas')
 def verHinchas():
-    return render_template('ver-hinchas.html')
+    conn = db.getConection()
+    hincha = db.getHinchas(conn, 0)
+    deportes = db.getHinchaDeportes(conn, 0)
+    cant = db.getCantHinchas(conn)
+    conn.close()
+    show = 5 < cant
+    return render_template('ver-hinchas.html', hinchas=hincha, deportes=deportes, n=0, ant=0, sig=1, mostrar =show)
 
 @app.route('/ver-artesanos')
 def verArtesanos():
@@ -152,15 +158,20 @@ def post_hinchas():
     region = request.form.get("region")
     comuna = request.form.get("comuna")
     deportes = request.form.getlist("deportes")
-    transpore = request.form.get("transpore")
+    transporte = request.form.get("transporte")
     nombre = request.form.get("name")
     email = request.form.get("mail")
     telefono = request.form.get("phone")
     comentario = request.form.get("coment")
-    if validarHincha(region, comuna, deportes, nombre, email, telefono, comentario, conn):
+    if validarHincha(region, comuna, deportes, transporte, nombre, email, telefono, comentario, conn):
+        db.addHincha(conn, comuna, transporte, nombre, email, telefono, comentario)
+        hincha = db.getLastId(conn)[0][0]
+        for d in deportes:
+            db.addHinchaDeporte(conn, d, hincha)
         conn.close()
         return redirect(url_for("index"))
     else:
+        conn.close()
         return redirect(url_for("agregarHincha"))
 
 if __name__ == '__main__':

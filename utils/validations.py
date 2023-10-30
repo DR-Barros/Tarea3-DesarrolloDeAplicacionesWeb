@@ -56,7 +56,7 @@ def validarArtesano(region, comuna, artesanias, photo, photo2, photo3, nombre, e
     #si paso todo devolver True
     return True
 
-def validarHincha(region, comuna, deportes, nombre, email, telefono, conn):
+def validarHincha(region, comuna, deportes,  transporte, nombre, email, telefono, comentario, conn):
     #validar region
     if int(region) < 1 or int(region) > 16:
         print("region invalido")
@@ -72,6 +72,11 @@ def validarHincha(region, comuna, deportes, nombre, email, telefono, conn):
         if int(t) < 1 or int(t) > 60:
             print("deporte invalido")
             return False
+        
+    #validar transporte
+    if transporte != "particular" and transporte != "locomoción pública":
+        print("transporte invalido: ", transporte)
+        return False
 
     #nombre
     if len(nombre) < 3 or len(nombre) >80:
@@ -90,6 +95,11 @@ def validarHincha(region, comuna, deportes, nombre, email, telefono, conn):
         print("celu invalido")
         return False
 
+    #comentario
+    if len(nombre) >80:
+        print("comenaio invalido")
+        return False
+    
     #si paso todo devolver True
     return True
 

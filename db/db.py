@@ -44,7 +44,6 @@ def getCantArtesanos(conn):
     cursor.execute(sql)
     cant = cursor.fetchall()
     cursor.close()
-    cursor.close()
     return cant[0][0]
 
 def getArtesanos(conn, n):
@@ -113,6 +112,30 @@ def getDeportes(conn):
     cursor.close()
     return d
 
+def getHinchas(conn, n):
+    sql = "SELECT h.id, c.nombre, h.nombre, celular, modo_transporte FROM hincha h, comuna c WHERE h.comuna_id = c.id ORDER BY id DESC LIMIT %s, 5"
+    cursor = conn.cursor()
+    cursor.execute(sql, (n))
+    hinchas = cursor.fetchall()
+    cursor.close()
+    return hinchas
+
+def getHinchaDeportes(conn, n):
+    sql = "SELECT d.nombre, h.id FROM hincha_deporte hd, deporte d, (SELECT id FROM hincha ORDER BY id DESC LIMIT %s, 5) h WHERE hd.hincha_id = h.id AND  hd.deporte_id = d.id"
+    cursor = conn.cursor()
+    cursor.execute(sql, (n))
+    hinchas = cursor.fetchall()
+    cursor.close()
+    return hinchas
+
+def getCantHinchas(conn):
+    sql = "SELECT count(*) FROM hincha"
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    cant = cursor.fetchall()
+    cursor.close()
+    return cant[0][0]
+
 def addArtesano(conn, comuna, descripcion, nombre, email, celular):
     sql = "INSERT INTO artesano (comuna_id, descripcion_artesania, nombre, email, celular) VALUES (%s,%s,%s,%s,%s)"
     cursor = conn.cursor()
@@ -131,5 +154,19 @@ def addArtesanoFoto(conn, ruta, foto, artesano):
     cursor = conn.cursor()
     sql = "INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES (%s,%s,%s)"
     cursor.execute(sql, (ruta, foto, artesano))
+    conn.commit()
+    cursor.close()
+
+def addHincha(conn, comuna, transporte, nombre, email, telefono, cometario):
+    sql = "INSERT INTO hincha (comuna_id, modo_transporte, nombre, email, celular, comentarios) VALUES (%s,%s,%s,%s,%s, %s)"
+    cursor = conn.cursor()
+    cursor.execute(sql, (comuna, transporte, nombre, email, telefono, cometario))
+    conn.commit()
+    cursor.close()
+
+def addHinchaDeporte(conn, deporte, hincha):
+    cursor = conn.cursor()
+    sql = "INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (%s,%s)"
+    cursor.execute(sql, (hincha, deporte))
     conn.commit()
     cursor.close()
