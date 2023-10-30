@@ -136,6 +136,24 @@ def getCantHinchas(conn):
     cursor.close()
     return cant[0][0]
 
+def getHinchaById(conn, id):
+    sql = "SELECT h.nombre, r.nombre, c.nombre, email, celular, modo_transporte, comentarios FROM hincha h, comuna c, region r WHERE h.id = %s AND h.comuna_id = c.id AND c.region_id = r.id"
+    cursor = conn.cursor()
+    cursor.execute(sql, (id))
+    hincha = cursor.fetchall()
+    cursor.close()
+    if len(hincha) == 0:
+        return None
+    return hincha[0]
+
+def getHinchaDeporById(conn, id):
+    sql = "SELECT d.nombre FROM hincha_deporte hd, deporte d WHERE hd.hincha_id = %s AND  hd.deporte_id = d.id"
+    cursor = conn.cursor()
+    cursor.execute(sql, (id))
+    deportes = cursor.fetchall()
+    cursor.close()
+    return deportes
+
 def addArtesano(conn, comuna, descripcion, nombre, email, celular):
     sql = "INSERT INTO artesano (comuna_id, descripcion_artesania, nombre, email, celular) VALUES (%s,%s,%s,%s,%s)"
     cursor = conn.cursor()

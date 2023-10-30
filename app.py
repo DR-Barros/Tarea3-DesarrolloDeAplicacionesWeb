@@ -34,19 +34,32 @@ def agregarArtesano():
     conn.close()
     return render_template('agregar-artesano.html', tipos = tiposArtesania, regiones = region, comunas = comuna)
 
-@app.route('/informacion-hincha')
-def informacionHincha():
-    return render_template('informacion-hincha.html')
+@app.route('/informacion-hincha-<num>')
+def informacionHincha(num):
+    try: 
+        n = int(num)
+    except:
+        print("fallo cambiar numero")
+        return redirect("ver-hinchas")
+    conn = db.getConection()
+    informacion = db.getHinchaById(conn, n)
+    if informacion == None:
+        conn.close()
+        return redirect("ver-hinchas")
+    deporte = db.getHinchaDeporById(conn, n)
+    conn.close()
+    return render_template('informacion-hincha.html', hincha = informacion, deportes = deporte)
 
 @app.route('/informacion-artesano-<num>')
-def informacionArtesano(num):
-    conn = db.getConection()
+def informacionArtesano(num): 
     try: 
         n = int(num)
     except:
         return redirect("ver-artesanos")
+    conn = db.getConection()
     informacion = db.getArtesanoById(conn, n)
     if informacion == None:
+        conn.close()
         return redirect("ver-artesanos")
     foto = db.getArtesanoFotoById(conn, n)
     tipo = db.getArtesanoTipoById(conn, n)
@@ -62,6 +75,18 @@ def verHinchas():
     conn.close()
     show = 5 < cant
     return render_template('ver-hinchas.html', hinchas=hincha, deportes=deportes, n=0, ant=0, sig=1, mostrar =show)
+
+@app.route('/ver-hinchas<num>')
+def verHinchas_param(num):
+    conn = db.getConection()
+    numero = 5*int(num)
+    num = int(num)
+    hincha = db.getHinchas(conn, numero)
+    deportes = db.getHinchaDeportes(conn, numero)
+    cant = db.getCantHinchas(conn)
+    conn.close()
+    show = numero+5 < cant
+    return render_template('ver-hinchas.html', hinchas=hincha, deportes=deportes, n=num, ant=num-1, sig=num+1, mostrar =show)
 
 @app.route('/ver-artesanos')
 def verArtesanos():

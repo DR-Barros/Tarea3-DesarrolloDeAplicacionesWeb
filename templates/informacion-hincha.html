@@ -8,14 +8,14 @@
 {% block content %}
 <div class="container">
     <h2>Hincha:</h2>
-    <p>Nombre: <span id="nombre"></span></p>
-    <p>Región: <span id="region"></span></p>
-    <p>Comuna: <span id="comuna"></span></p>
-    <p>Metodo de transporte: <span id="transporte"></span></p>
-    <p>Deportes de interes:<span id="deportes"></span></p>
-    <p>Correo de contacto: <span id="mail"></span></p>
-    <p>Telefono de contacto: <span id="phone"></span></p>
-    <p class="comentarios">Comentarios adicionales:<span id="comentarios"></span></p>
+    <p>Nombre: <span id="nombre">{{hincha[0]}}</span></p>
+    <p>Región: <span id="region">{{hincha[1]}}</span></p>
+    <p>Comuna: <span id="comuna">{{hincha[2]}}</span></p>
+    <p>Metodo de transporte: <span id="transporte">{{hincha[5]}}</span></p>
+    <p>Deportes de interes: <span id="deportes">{% for d in deportes %}{{d[0]}} {% endfor %}</span></p>
+    <p>Correo de contacto: <span id="mail">{{hincha[3]}}</span></p>
+    <p>Telefono de contacto: <span id="phone">{{hincha[4]}}</span></p>
+    <p class="comentarios">Comentarios adicionales: <span id="comentarios">{{hincha[6]}}</span></p>
     <a class="boton" href="./ver-hinchas">Volver a ver Hinchas</a>
 </div>
 {% endblock %}

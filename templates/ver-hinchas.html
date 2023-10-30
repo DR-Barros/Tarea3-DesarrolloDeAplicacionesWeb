@@ -32,7 +32,13 @@
         </tr>
         {% endfor %}
     </table>
-    <a class="boton" href=".">Volver a Inicio</a>
+    {% if n > 0%}
+        <a class="boton" href="/ver-hinchas{{ant}}">Pagina anterior</a>
+    {% endif %}
+    <a class="boton" href=".">Volver a Inicios</a>
+    {% if mostrar%}
+        <a class="boton" href="/ver-hinchas{{sig}}">Pagina siguiente</a>
+    {% endif %}
 </div>
 {% endblock %}
 {% block js %}
