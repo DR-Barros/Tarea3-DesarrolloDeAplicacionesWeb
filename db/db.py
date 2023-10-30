@@ -16,6 +16,7 @@ def getTipoArtesania(conn):
     cursor = conn.cursor()
     cursor.execute(sql)
     tipos = cursor.fetchall()
+    cursor.close()
     return tipos
 
 #devuelve un array con (id, región)
@@ -24,6 +25,7 @@ def getRegion(conn):
     cursor = conn.cursor()
     cursor.execute(sql)
     region = cursor.fetchall()
+    cursor.close()
     return region
 
 #devuelve un array con (id, nombre, región_id)
@@ -32,6 +34,7 @@ def getComuna(conn):
     cursor = conn.cursor()
     cursor.execute(sql)
     comuna = cursor.fetchall()
+    cursor.close()
     return comuna
 
 
@@ -40,6 +43,8 @@ def getCantArtesanos(conn):
     cursor = conn.cursor()
     cursor.execute(sql)
     cant = cursor.fetchall()
+    cursor.close()
+    cursor.close()
     return cant[0][0]
 
 def getArtesanos(conn, n):
@@ -47,6 +52,7 @@ def getArtesanos(conn, n):
     cursor = conn.cursor()
     cursor.execute(sql, (n))
     artesanos = cursor.fetchall()
+    cursor.close()
     return artesanos
 
 def getArtesanoFoto(conn, n):
@@ -54,6 +60,7 @@ def getArtesanoFoto(conn, n):
     cursor = conn.cursor()
     cursor.execute(sql, (n))
     fotos = cursor.fetchall()
+    cursor.close()
     return fotos
 
 def getArtesanoTipo(conn, n):
@@ -61,6 +68,7 @@ def getArtesanoTipo(conn, n):
     cursor = conn.cursor()
     cursor.execute(sql, (n))
     tipos = cursor.fetchall()
+    cursor.close()
     return tipos
 
 def getArtesanoById(conn, id):
@@ -68,6 +76,7 @@ def getArtesanoById(conn, id):
     cursor = conn.cursor()
     cursor.execute(sql, (id))
     artesano = cursor.fetchall()
+    cursor.close()
     if len(artesano) == 0:
         return None
     return artesano[0]
@@ -77,6 +86,7 @@ def getArtesanoTipoById(conn, id):
     cursor = conn.cursor()
     cursor.execute(sql, (id))
     tipos = cursor.fetchall()
+    cursor.close()
     return tipos
 
 def getArtesanoFotoById(conn, id):
@@ -84,6 +94,7 @@ def getArtesanoFotoById(conn, id):
     cursor = conn.cursor()
     cursor.execute(sql, (id))
     fotos = cursor.fetchall()
+    cursor.close()
     return fotos
 
 def getLastId(conn):
@@ -91,6 +102,7 @@ def getLastId(conn):
     cursor = conn.cursor()
     cursor.execute(sql)
     id = cursor.fetchall()
+    cursor.close()
     return id
 
 def addArtesano(conn, comuna, descripcion, nombre, email, celular):
@@ -98,15 +110,18 @@ def addArtesano(conn, comuna, descripcion, nombre, email, celular):
     cursor = conn.cursor()
     cursor.execute(sql, (comuna, descripcion, nombre, email, celular))
     conn.commit()
+    cursor.close()
 
 def addArtesanoTipo(conn, tipo, artesano):
     cursor = conn.cursor()
     sql = "INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (%s,%s)"
     cursor.execute(sql, (artesano, tipo))
     conn.commit()
+    cursor.close()
 
 def addArtesanoFoto(conn, ruta, foto, artesano):
     cursor = conn.cursor()
     sql = "INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES (%s,%s,%s)"
     cursor.execute(sql, (ruta, foto, artesano))
     conn.commit()
+    cursor.close()

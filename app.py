@@ -12,7 +12,6 @@ app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-conn = db.getConection()
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -23,9 +22,11 @@ def agregarHincha():
 
 @app.route('/agregar-artesano')
 def agregarArtesano():
+    conn = db.getConection()
     tiposArtesania = db.getTipoArtesania(conn)
     region = db.getRegion(conn)
     comuna = db.getComuna(conn)
+    conn.close()
     return render_template('agregar-artesano.html', tipos = tiposArtesania, regiones = region, comunas = comuna)
 
 @app.route('/informacion-hincha')
@@ -34,6 +35,7 @@ def informacionHincha():
 
 @app.route('/informacion-artesano-<num>')
 def informacionArtesano(num):
+    conn = db.getConection()
     try: 
         n = int(num)
     except:
@@ -43,6 +45,7 @@ def informacionArtesano(num):
         return redirect("ver-artesanos")
     foto = db.getArtesanoFotoById(conn, n)
     tipo = db.getArtesanoTipoById(conn, n)
+    conn.close()
     return render_template('informacion-artesano.html', artesano = informacion, fotos=foto, tipos = tipo)
 
 @app.route('/ver-hinchas')
@@ -51,22 +54,25 @@ def verHinchas():
 
 @app.route('/ver-artesanos')
 def verArtesanos():
+    conn = db.getConection()
     artesano = db.getArtesanos(conn, 0)
     foto = db.getArtesanoFoto(conn, 0)
     tipo = db.getArtesanoTipo(conn, 0)
     cant = db.getCantArtesanos(conn)
+    conn.close()
     show = 5 < cant
     return render_template('ver-artesanos.html', artesanos = artesano, fotos=foto, tipos = tipo, n=0, ant= 0, sig=1, mostrar = show)
 
 @app.route('/ver-artesanos<num>')
 def verArtesanos_param(num):
+    conn = db.getConection()
     numero = 5*int(num)
     num = int(num)
     artesano = db.getArtesanos(conn, numero)
     foto = db.getArtesanoFoto(conn, numero)
     tipo = db.getArtesanoTipo(conn, numero)
     cant = db.getCantArtesanos(conn)
-    print(cant)
+    conn.close()
     show = numero+5 < cant
     return render_template('ver-artesanos.html', artesanos = artesano, fotos=foto, tipos = tipo, n =num, ant=num-1, sig=num+1, mostrar = show)
 
@@ -74,6 +80,7 @@ def verArtesanos_param(num):
 @app.route('/post-artesanos', methods=['POST'])
 def post_artesano():
      if request.method == 'POST':
+        conn = db.getConection()
         region = request.form.get("region")
         comuna = request.form.get("comuna")
         artesania = request.form.getlist("artesania")
@@ -129,10 +136,10 @@ def post_artesano():
                 photo3.save(os.path.join(app.config["UPLOAD_FOLDER"], img3_filename))
                 # subir link a la base dato
                 db.addArtesanoFoto(conn, app.config["UPLOAD_FOLDER"], img3_filename, artesano)
-            
+            conn.close()
             return redirect(url_for("index"))
         else:
-            tiposArtesania = db.getTipoArtesania(conn)
+            conn.close()
             return redirect(url_for("agregarArtesano"))
 
 if __name__ == '__main__':
