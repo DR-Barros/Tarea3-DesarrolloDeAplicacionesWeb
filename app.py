@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from db import db
 from utils.validations import *
 from werkzeug.utils import secure_filename
@@ -11,10 +11,14 @@ UPLOAD_FOLDER = 'static/uploads'
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = 'tu_clave_secreta'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    state = session.get('state')
+    session['state'] = None
+    return render_template('index.html', state=state)
+
 
 @app.route('/agregar-hincha')
 def agregarHincha():
@@ -112,6 +116,9 @@ def verArtesanos_param(num):
     show = numero+5 < cant
     return render_template('ver-artesanos.html', artesanos = artesano, fotos=foto, tipos = tipo, n =num, ant=num-1, sig=num+1, mostrar = show)
 
+@app.route('/data')
+def data():
+    return render_template('data.html')
 
 @app.route('/post-artesanos', methods=['POST'])
 def post_artesano():
@@ -194,10 +201,16 @@ def post_hinchas():
         for d in deportes:
             db.addHinchaDeporte(conn, d, hincha)
         conn.close()
+        session['state'] = "Se creo el hincha  con exito"
         return redirect(url_for("index"))
     else:
         conn.close()
         return redirect(url_for("agregarHincha"))
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

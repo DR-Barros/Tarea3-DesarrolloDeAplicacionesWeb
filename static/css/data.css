@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    min-height: 100%;
+}
+header{
+    margin: 0;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    text-align: center;
+}
+header a{
+    color: #000;
+    text-decoration: none;
+    padding: 5px;
+}
+
+
+footer{
+    padding: 5px;
+    text-align: center;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+footer p{
+    margin: 0;
+    color: white;
+}

@@ -6,6 +6,12 @@ Panamericanos Santiago
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/index.css')}}">
 {% endblock %}
 {% block content %}
+    {% if state %}
+    <div class="exito">
+        <button class="close">X</button>
+        <p>{{state}}</p>
+    </div>
+    {% endif %}
     <div class="hero">
         {% block img%}
         <img src="{{url_for('static', filename='img/portada.png')}}" alt="portada de los juegos panamericanos">
