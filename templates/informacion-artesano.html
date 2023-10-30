@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    Informacion Artesano
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/informacion-artesano.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Artesano:</h2>
+    <p>Nombre: {{artesano[0]}}</p>
+    <p>Región: {{artesano[1]}}</p>
+    <p>Comuna: {{artesano[2]}}</p>
+    <p>Email de contacto: {{artesano[3]}}</p>
+    <p>Telefono de contacto: {{artesano[4]}}</p>
+    <p>Tipo de artesanías: <span id="tipo">{% for t in tipos %}{{t[0]}} {% endfor %}</span></p>
+    <p>Descripción: {{artesano[5]}}</p>
+    <div id="fotos">
+        {% for foto in fotos %}
+        <img class="fotos" src="{{foto[0]+'/'+foto[1]}}" alt="">
+        {% endfor %}
+    </div>
+    <a class="boton" href="./ver-artesanos">Volver a ver Artesanos</a>
+</div>
+{% endblock %}
+{% block js %}
+    <script src="{{url_for('static', filename='js/informacion-artesano.js')}}"></script>
+{% endblock %}

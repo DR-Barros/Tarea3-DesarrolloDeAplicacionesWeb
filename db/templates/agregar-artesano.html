@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}
+    Registrar Artesano
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/agregar-artesano.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Inscribete para vender tus artesanias</h2>
+    <form id="formulario" action="/post-artesanos", method="post" enctype="multipart/form-data">
+        <div class="region form">
+            <label for="region">Seleccione su región de procedencia: <span id="region-span"></span></label>
+            <select name="region" id="region">
+                <option value="">Elija una de las siguientes regiones</option>
+                {% for region in regiones %}
+                <option value="{{region[0]}}">{{region[1]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="comuna form">
+            <label for="comuna">Seleccione su comuna <span id="comuna-span"></span></label>
+            <select name="comuna" id="comuna" disabled="disabled">
+                <option value="">Elija primero la region</option>
+                {% for comuna in comunas %}
+                <option class="{{comuna[2]}}" value="{{comuna[0]}}">{{comuna[1]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="artesanias form">
+            <fieldset>
+                <legend>Seleccione el tipo de sus artesanias (seleccione máximo 3): <span id="artesania-span"></span></legend>
+                {% for t in tipos %}
+                <input type="checkbox" name="artesania" id="{{t[1]}}" value="{{t[0]}}">
+                <label for="{{t[1]}}">{{ t[1] }}</label>
+                {% endfor %}
+            </fieldset>
+        </div>
+        <div class="descripcion  form">
+            <label for="descripcion">Describas sus artesanias <span id="desc-span"></span></label>
+            <textarea name="descripcion" id="descripcion" cols="50" rows="4"></textarea>
+        </div>
+        <div class="fotos form">
+            <label for="photo">Seleccione fotos para de sus artesanias <span id="fotos-span"></span></label>
+            <input name="photo" id="photo" type="file" accept="image/png, image/jpeg">
+            <div id="foto2"></div>
+            <div id="foto3"></div>
+        </div>
+        <div class="nombre form">
+            <label for="name">Ingrese su nombre: <span id="name-span"></span></label>
+            <input type="text" name="name" id="name" autocomplete="name" maxlength="80">
+        </div>
+        <div class="email form">
+            <label for="mail">Ingrese su correo electronico: <span id="mail-span"></span></label>
+            <input type="email" name="mail" id="mail" autocomplete="email" maxlength="30">
+        </div>
+        <div class="telefono form">
+            <label for="phone">Ingrese un celular de contacto <span id="phone-span"></span></label>
+            <input type="tel" name="phone" id="phone" autocomplete="mobile" maxlength="15">
+        </div>
+        <button class="boton form" id="Registrar-Artesano">Registrarse</button>
+        <span id="msg"></span>
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+    <script src="{{url_for('static', filename='js/agregar-artesano.js')}}"></script>
+{% endblock %}

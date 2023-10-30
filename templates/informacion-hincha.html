@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+    Informacion Hincha
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/informacion-hincha.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Hincha:</h2>
+    <p>Nombre: <span id="nombre"></span></p>
+    <p>Región: <span id="region"></span></p>
+    <p>Comuna: <span id="comuna"></span></p>
+    <p>Metodo de transporte: <span id="transporte"></span></p>
+    <p>Deportes de interes:<span id="deportes"></span></p>
+    <p>Correo de contacto: <span id="mail"></span></p>
+    <p>Telefono de contacto: <span id="phone"></span></p>
+    <p class="comentarios">Comentarios adicionales:<span id="comentarios"></span></p>
+    <a class="boton" href="./ver-hinchas">Volver a ver Hinchas</a>
+</div>
+{% endblock %}
+{% block js %}
+    <script src="{{url_for('static', filename='js/informacion-hincha.js')}}"></script>
+{% endblock %}

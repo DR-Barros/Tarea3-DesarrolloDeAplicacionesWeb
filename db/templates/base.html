@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Juegos Panamericanos Chile 2023</h1>
+        <div class="Menu">
+            <a href="{{url_for('index')}}">Inicio</a>
+            <a href="{{url_for('agregarHincha')}}">Registrar Hincha</a>
+            <a href="{{url_for('agregarArtesano')}}">Registrar Artesano</a>
+            <a href="{{url_for('verHinchas')}}">Ver Hinchas</a>
+            <a href="{{url_for('verArtesanos')}}">Ver Artesanos</a>
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+    <footer>
+        <p>
+            <small>Pagina desarrollada por Daniel Radrigan para el curso de Desarrollo de Aplicaciones WEB</small>
+        </p>
+    </footer>
+    {% block js %}{% endblock %}
+</body>
+</html>
