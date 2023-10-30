@@ -6,6 +6,10 @@ Panamericanos Santiago
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/data.css')}}">
 {% endblock %}
 {% block content %}
-
-
+    <div id="artesanos"></div>
+    <div id="hinchas"></div>
+{% endblock %}
+{% block js %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="{{url_for('static', filename='js/data.js')}}"></script>
 {% endblock %}

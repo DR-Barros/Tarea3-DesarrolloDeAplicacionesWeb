@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from db import db
 from utils.validations import *
 from werkzeug.utils import secure_filename
@@ -207,9 +207,27 @@ def post_hinchas():
         conn.close()
         return redirect(url_for("agregarHincha"))
 
+@app.route('/artesano-data')
+def artesanoData():
+    conn = db.getConection()
+    cursor = conn.cursor()
+    sql = "SELECT t.nombre, COUNT(artesano_id) FROM artesano_tipo a, tipo_artesania t WHERE a.tipo_artesania_id = t.id GROUP BY t.nombre"
+    cursor.execute(sql)
+    tipos = cursor.fetchall()
+    cursor.close
+    conn.close
+    return jsonify(tipos)
 
-
-
+@app.route('/hincha-data')
+def hinchaData():
+    conn = db.getConection()
+    cursor = conn.cursor()
+    sql = "SELECT d.nombre, COUNT(h.hincha_id) FROM hincha_deporte h, deporte d WHERE d.id = h.deporte_id GROUP BY d.id"
+    cursor.execute(sql)
+    tipos = cursor.fetchall()
+    cursor.close
+    conn.close
+    return jsonify(tipos)
 
 
 if __name__ == '__main__':
