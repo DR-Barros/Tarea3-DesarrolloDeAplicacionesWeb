@@ -119,8 +119,9 @@ function validar(event){
 
     if(valido){
         const MSG = document.getElementById("msg")
-        const FORM = document.getElementById("formulario")
-        FORM.style.display = "none"
+        let form = document.getElementsByClassName("form")
+        form = Array.from(form)
+        form.forEach((e) => {e.style.display = "none"})
         let str = "<p>¿Confirma el registro de este hincha?<p>"
         str += "<button id='SI'>Sí, confirmo</button>"
         str += "<button id='NO'>No, quiero volver al formulario</button>"
@@ -130,9 +131,8 @@ function validar(event){
         // si quiere agregar se avisa que tuvo exito y se grega link a inicio
         //sino vuelve al inventario
         SI.addEventListener("click", e => {
-            str ="<p>Hemos recibido el registro de Hincha. Muchas gracias.</p>"
-            str += "<a href='.'>Volver a Inicio </a>"
-            MSG.innerHTML = str
+            const FORM = document.getElementById('formulario')
+            FORM.submit()
         })
         NO.addEventListener("click", e => {
             FORM.style.display = "block"

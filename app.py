@@ -157,7 +157,11 @@ def post_hinchas():
     email = request.form.get("mail")
     telefono = request.form.get("phone")
     comentario = request.form.get("coment")
-    pass
+    if validarHincha(region, comuna, deportes, nombre, email, telefono, comentario, conn):
+        conn.close()
+        return redirect(url_for("index"))
+    else:
+        return redirect(url_for("agregarHincha"))
 
 if __name__ == '__main__':
     app.run(debug=True)

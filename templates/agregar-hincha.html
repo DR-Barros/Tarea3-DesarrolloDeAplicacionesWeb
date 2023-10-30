@@ -9,133 +9,17 @@
 <div class="container">
     <h2>Inscribete como hincha en tus deportes favoritos</h2>
     <div id="formulario">
-        <form>
-            <div class="deportes">
+        <form id="formulario" action="/post-hinchas", method="post" enctype="multipart/form-data">
+            <div class="deportes form">
                 <fieldset>
                     <legend id="deportes-legend">Seleccione los deportes de su interes (máximo 3) <span id="depor-span"></span></legend>
-                    <input type="checkbox" name="deportes" id="Clavados" value="Clavados">
-                    <label for="Clavados">Clavados</label>
-                    <input type="checkbox" name="deportes" id="Natación" value="Natación">
-                    <label for="Natación">Natación</label>
-                    <input type="checkbox" name="deportes" id="Natación-artística" value="Natación artística">
-                    <label for="Natación-artística">Natación artística</label>
-                    <input type="checkbox" name="deportes" id="Polo-acuático" value="Polo acuático">
-                    <label for="Polo-acuático">Polo acuático</label>
-                    <input type="checkbox" name="deportes" id="Natación-en-Aguas-abiertas" value="Natación en Aguas abiertas">
-                    <label for="Natación-en-Aguas-abiertas">Natación en Aguas abiertas</label>
-                    <input type="checkbox" name="deportes" id="Maratón" value="Maratón">
-                    <label for="Maratón">Maratón</label>
-                    <input type="checkbox" name="deportes" id="Marcha" value="Marcha">
-                    <label for="Marcha">Marcha</label>
-                    <input type="checkbox" name="deportes" id="Atletismo" value="Atletismo">
-                    <label for="Atletismo">Atletismo</label>
-                    <input type="checkbox" name="deportes" id="Bádminton" value="Bádminton">
-                    <label for="Bádminton">Bádminton</label>
-                    <input type="checkbox" name="deportes" id="Balonmano" value="Balonmano">
-                    <label for="Balonmano">Balonmano</label>
-                    <input type="checkbox" name="deportes" id="Básquetbol" value="Básquetbol">
-                    <label for="Básquetbol">Básquetbol</label>
-                    <input type="checkbox" name="deportes" id="Básquetbol-3x3" value="Básquetbol 3x3">
-                    <label for="Básquetbol-3x3">Básquetbol 3x3</label>
-                    <input type="checkbox" name="deportes" id="Béisbol" value="Béisbol">
-                    <label for="Béisbol">Béisbol</label>
-                    <input type="checkbox" name="deportes" id="Boxeo" value="Boxeo">
-                    <label for="Boxeo">Boxeo</label>
-                    <input type="checkbox" name="deportes" id="Bowling" value="Bowling">
-                    <label for="Bowling">Bowling</label>
-                    <input type="checkbox" name="deportes" id="Breaking" value="Breaking">
-                    <label for="Breaking">Breaking</label>
-                    <input type="checkbox" name="deportes" id="Canotaje-Slalom" value="Canotaje Slalom">
-                    <label for="Canotaje-Slalom">Canotaje Slalom</label>
-                    <input type="checkbox" name="deportes" id="Canotaje-de-velocidad" value="Canotaje de velocidad">
-                    <label for="Canotaje-de-velocidad">Canotaje de velocidad</label>
-                    <input type="checkbox" name="deportes" id="BMX-Freestyle" value="BMX Freestyle">
-                    <label for="BMX-Freestyle">BMX Freestyle</label>
-                    <input type="checkbox" name="deportes" id="BMX-Racing" value="BMX Racing">
-                    <label for="BMX-Racing">BMX Racing</label>
-                    <input type="checkbox" name="deportes" id="Mountain-Bike" value="Mountain Bike">
-                    <label for="Mountain-Bike">Mountain Bike</label>
-                    <input type="checkbox" name="deportes" id="Ciclismo-pista" value="Ciclismo pista">
-                    <label for="Ciclismo-pista">Ciclismo pista</label>
-                    <input type="checkbox" name="deportes" id="Ciclismo-ruta" value="Ciclismo ruta">
-                    <label for="Ciclismo-ruta">Ciclismo ruta</label>
-                    <input type="checkbox" name="deportes" id="Adiestramiento-ecuestre" value="Adiestramiento ecuestre">
-                    <label for="Adiestramiento-ecuestre">Adiestramiento ecuestre</label>
-                    <input type="checkbox" name="deportes" id="Evento-completo-ecuestre" value="Evento completo ecuestre">
-                    <label for="Evento-completo-ecuestre">Evento completo ecuestre</label>
-                    <input type="checkbox" name="deportes" id="Salto-ecuestre" value="Salto ecuestre">
-                    <label for="Salto-ecuestre">Salto ecuestre</label>
-                    <input type="checkbox" name="deportes" id="Escalada-deportiva" value="Escalada deportiva">
-                    <label for="Escalada-deportiva">Escalada deportiva</label>
-                    <input type="checkbox" name="deportes" id="Esgrima" value="Esgrima">
-                    <label for="Esgrima">Esgrima</label>
-                    <input type="checkbox" name="deportes" id="Esquí-acuático-y-Wakeboard" value="Esquí acuático y Wakeboard">
-                    <label for="Esquí-acuático-y-Wakeboard">Esquí acuático y Wakeboard</label>
-                    <input type="checkbox" name="deportes" id="Fútbol" value="Fútbol">
-                    <label for="Fútbol">Fútbol</label>
-                    <input type="checkbox" name="deportes" id="Gimnasia-artística-Masculina" value="Gimnasia artística Masculina">
-                    <label for="Gimnasia-artística-Masculina">Gimnasia artística Masculina</label>
-                    <input type="checkbox" name="deportes" id="Gimnasia-artística-Femenina" value="Gimnasia artística Femenina">
-                    <label for="Gimnasia-artística-Femenina">Gimnasia artística Femenina</label>
-                    <input type="checkbox" name="deportes" id="Gimnasia-rítmica" value="Gimnasia rítmica">
-                    <label for="Gimnasia-rítmica">Gimnasia rítmica</label>
-                    <input type="checkbox" name="deportes" id="Gimnasia-trampolín" value="Gimnasia trampolín">
-                    <label for="Gimnasia-trampolín">Gimnasia trampolín</label>
-                    <input type="checkbox" name="deportes" id="Golf" value="Golf">
-                    <label for="Golf">Golf</label>
-                    <input type="checkbox" name="deportes" id="Hockey-césped" value="Hockey césped">
-                    <label for="Hockey-césped">Hockey césped</label>
-                    <input type="checkbox" name="deportes" id="Judo" value="Judo">
-                    <label for="Judo">Judo</label>
-                    <input type="checkbox" name="deportes" id="Karate" value="Karate">
-                    <label for="Karate">Karate</label>
-                    <input type="checkbox" name="deportes" id="Levantamiento-de-pesas" value="Levantamiento de pesas">
-                    <label for="Levantamiento-de-pesas">Levantamiento de pesas</label>
-                    <input type="checkbox" name="deportes" id="Lucha" value="Lucha">
-                    <label for="Lucha">Lucha</label>
-                    <input type="checkbox" name="deportes" id="Patinaje-artístico" value="Patinaje artístico">
-                    <label for="Patinaje-artístico">Patinaje artístico</label>
-                    <input type="checkbox" name="deportes" id="Skateboarding" value="Skateboarding">
-                    <label for="Skateboarding">Skateboarding</label>
-                    <input type="checkbox" name="deportes" id="Patinaje-velocidad" value="Patinaje velocidad">
-                    <label for="Patinaje-velocidad">Patinaje velocidad</label>
-                    <input type="checkbox" name="deportes" id="Pelota-vasca" value="Pelota vasca">
-                    <label for="Pelota-vasca">Pelota vasca</label>
-                    <input type="checkbox" name="deportes" id="Pentatlón-moderno" value="Pentatlón moderno">
-                    <label for="Pentatlón-moderno">Pentatlón moderno</label>
-                    <input type="checkbox" name="deportes" id="Racquetball" value="Racquetball">
-                    <label for="Racquetball">Racquetball</label>
-                    <input type="checkbox" name="deportes" id="Remo" value="Remo">
-                    <label for="Remo">Remo</label>
-                    <input type="checkbox" name="deportes" id="Rugby-7" value="Rugby 7">
-                    <label for="Rugby-7">Rugby 7</label>
-                    <input type="checkbox" name="deportes" id="Sóftbol" value="Sóftbol">
-                    <label for="Sóftbol">Sóftbol</label>
-                    <input type="checkbox" name="deportes" id="Squash" value="Squash">
-                    <label for="Squash">Squash</label>
-                    <input type="checkbox" name="deportes" id="Surf" value="Surf">
-                    <label for="Surf">Surf</label>
-                    <input type="checkbox" name="deportes" id="Taekwondo" value="Taekwondo">
-                    <label for="Taekwondo">Taekwondo</label>
-                    <input type="checkbox" name="deportes" id="Tenis" value="Tenis">
-                    <label for="Tenis">Tenis</label>
-                    <input type="checkbox" name="deportes" id="Tenis-de-mesa" value="Tenis de mesa">
-                    <label for="Tenis-de-mesa">Tenis de mesa</label>
-                    <input type="checkbox" name="deportes" id="Tiro" value="Tiro">
-                    <label for="Tiro">Tiro</label>
-                    <input type="checkbox" name="deportes" id="Tiro-con-arco" value="Tiro con arco">
-                    <label for="Tiro-con-arco">Tiro con arco</label>
-                    <input type="checkbox" name="deportes" id="Triatlón" value="Triatlón">
-                    <label for="Triatlón">Triatlón</label>
-                    <input type="checkbox" name="deportes" id="Vela" value="Vela">
-                    <label for="Vela">Vela</label>
-                    <input type="checkbox" name="deportes" id="Vóleibol" value="Vóleibol">
-                    <label for="Vóleibol">Vóleibol</label>
-                    <input type="checkbox" name="deportes" id="Vóleibol-playa" value="Vóleibol playa">
-                    <label for="Vóleibol-playa">Vóleibol playa</label>
+                    {% for d in dep %}
+                        <input type="checkbox" name="deportes" id="{{d[1]}}" value="{{d[0]}}">
+                        <label for="{{d[1]}}">{{ d[1] }}</label>
+                    {% endfor %}
                 </fieldset>
             </div>
-            <div class="region">
+            <div class="region form">
                 <label for="region">Seleccione su región de procedencia: <span id="region-span"></span></label>
                 <br>
                 <select name="region" id="region">
@@ -145,7 +29,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="comuna">
+            <div class="comuna form">
                 <label for="comuna">Seleccione Región <span id="comuna-span"></span></label>
                 <br>
                 <select name="comuna" id="comuna" disabled="disabled">
@@ -155,7 +39,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="transporte">
+            <div class="transporte form">
                 <label for="transporte">Seleccione su medio de transporte</label>
                 <br>
                 <select name="transporte" id="transporte">
@@ -163,30 +47,31 @@
                     <option value="locomoción publica">locomoción publica</option>
                 </select>
             </div>
-            <div class="nombre">
+            <div class="nombre form">
                 <label for="name">Ingrese su nombre: <span id="name-span"></span></label>
                 <br>
                 <input type="text" name="name" id="name" maxlength="80" autocomplete="name" required>
             </div>
-            <div class="email">
+            <div class="email form">
                 <label for="mail">Ingrese su correo electronico: <span id="email-span"></span></label>
                 <br>
                 <input type="email" name="mail" id="mail" maxlength="30" autocomplete="email" required>
             </div>
-            <div class="telefono">
+            <div class="telefono form">
                 <label for="phone">Ingrese un celular de contacto <span id="phone-span"></span></label>
                 <br>
                 <input type="tel" name="phone" id="phone" maxlength="15" autocomplete="tel" required>
             </div>
-            <div class="comentarios">
+            <div class="comentarios form">
                 <label for="coment">Comentarios adicionales <span id="com-span"></span></label>
                 <br>
                 <textarea name="coment" id="coment" cols="30" rows="3" maxlength="80"></textarea>
             </div>
-            <button class="boton" id="Registrar-Hincha">Registrar Hincha</button>
+            <button class="boton form" id="Registrar-Hincha">Registrar Hincha</button>
+            <span id="msg"></span>
         </form>
     </div>
-    <span id="msg"></span>
+    
 </div>
 {% endblock %}
 {% block js %}
