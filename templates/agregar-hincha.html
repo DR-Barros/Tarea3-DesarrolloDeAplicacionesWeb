@@ -140,22 +140,9 @@
                 <br>
                 <select name="region" id="region">
                     <option value="">-Elija una de las siguientes comunas-</option>
-                    <option value="Tarapacá">I Región: Arica y Parinacota</option>
-                    <option value="Antofagasta">II Región</option>
-                    <option value="Atacama">III Región</option>
-                    <option value="Coquimbo">IV Región</option>
-                    <option value="Valparaíso">V Región</option>
-                    <option value="Región del Libertador Gral. Bernardo O’Higgins">VI Región</option>
-                    <option value="Región del Maule">VII Región</option>
-                    <option value="Región del Biobío">VIII Región</option>
-                    <option value="Región de la Araucanía">IX Región</option>
-                    <option value="Región de Los Lagos">X Región</option>
-                    <option value="Región Aisén del Gral. Carlos Ibáñez del Campo">XI Región</option>
-                    <option value="Región Metropolitana de Santiago">Región Metropolitana</option>
-                    <option value="Región de Magallanes y de la Antártica Chilena">XII Región</option>
-                    <option value="Región de Los Ríos">XIV Región</option>
-                    <option value="Arica y Parinacota">XV Región</option>
-                    <option value="Región de Ñuble">XVI Región</option>
+                    {% for region in regiones %}
+                        <option value="{{region[0]}}">{{region[1]}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="comuna">
@@ -163,6 +150,9 @@
                 <br>
                 <select name="comuna" id="comuna" disabled="disabled">
                     <option value="">Elja primero su región</option>
+                    {% for comuna in comunas %}
+                        <option class="{{comuna[2]}}" value="{{comuna[0]}}">{{comuna[1]}}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="transporte">

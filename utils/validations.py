@@ -55,7 +55,8 @@ def validarArtesano(region, comuna, artesanias, photo, photo2, photo3, nombre, e
     #si paso todo devolver True
     return True
 
-
+def validarHincha(region, comuna, deportes, nombre, email, telefono, conn):
+    pass
 
 #devuelve el id de la region, devuelve -1 si no la encuentra
 def validarComuna(comuna, conn):

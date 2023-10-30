@@ -105,6 +105,14 @@ def getLastId(conn):
     cursor.close()
     return id
 
+def getDeportes(conn):
+    sql ="SELECT * FROM deporte"
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    d = cursor.fetchall()
+    cursor.close()
+    return d
+
 def addArtesano(conn, comuna, descripcion, nombre, email, celular):
     sql = "INSERT INTO artesano (comuna_id, descripcion_artesania, nombre, email, celular) VALUES (%s,%s,%s,%s,%s)"
     cursor = conn.cursor()
