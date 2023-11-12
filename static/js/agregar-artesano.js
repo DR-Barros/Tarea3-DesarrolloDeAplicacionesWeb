@@ -118,7 +118,7 @@ function agregarArtesano(event){
     //Nombre
     const NAME = document.getElementById("name");
     let nameSpan = document.getElementById("name-span");
-    if(NAME.value.length<3 || NAME.value.length> 80){
+    if(NAME.value.trim().length<3 || NAME.value.trim().length> 80){
         nameSpan.innerText ="Ingrese un nombre de entre 3 y 80 caracteres";
         valido = false
     } else{

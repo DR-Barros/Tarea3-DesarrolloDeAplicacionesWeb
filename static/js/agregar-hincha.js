@@ -70,14 +70,21 @@ function validar(event){
         regionSpan.innerText = ""
         comunaSpan.innerText = ""
     }
+    // chequear que medio transporte
+    const TRANSPORTE = document.getElementById("transporte")
+    let transporteSpan = document.getElementById("transporte-span")
+    if (TRANSPORTE.value == ""){
+        transporteSpan.innerText = "Seleccione su medio de transporte"
+        valido = false
+    } 
 
     //Nombre
     const NAME = document.getElementById("name")
     let nameSpan = document.getElementById("name-span")
-    if(NAME.value.length<3){
+    if(NAME.value.trim().length<3){
         nameSpan.innerText = "Ingrese un nombre de minimo 3 caracteres"
         valido = false
-    } else if (NAME.value.length> 80){
+    } else if (NAME.value.trim().length> 80){
         nameSpan.innerText = "El nombre debe ser de maximo 80 caracteres"
         valido = false
     } else {
