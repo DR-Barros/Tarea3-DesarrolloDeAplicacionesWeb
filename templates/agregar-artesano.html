@@ -21,7 +21,7 @@
         <div class="comuna form">
             <label for="comuna">Seleccione su comuna <span id="comuna-span"></span></label>
             <select name="comuna" id="comuna" disabled="disabled">
-                <option value="">Elija primero la region</option>
+                <option value="">Elija su comuna</option>
                 {% for comuna in comunas %}
                 <option class="{{comuna[2]}}" value="{{comuna[0]}}">{{comuna[1]}}</option>
                 {% endfor %}

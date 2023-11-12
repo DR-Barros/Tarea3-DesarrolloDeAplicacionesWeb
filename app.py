@@ -130,7 +130,7 @@ def post_artesano():
     photo = request.files.get("photo")
     photo2 = request.files.get("photo2")
     photo3 = request.files.get("photo3")
-    nombre = request.form.get("name")
+    nombre = request.form.get("name").strip()
     email = request.form.get("mail")
     telefono = request.form.get("phone")
     if validarArtesano(region, comuna, artesania, photo, photo2, photo3, nombre, email, telefono, conn):
@@ -179,6 +179,7 @@ def post_artesano():
             # subir link a la base dato
             db.addArtesanoFoto(conn, app.config["UPLOAD_FOLDER"], img3_filename, artesano)
         conn.close()
+        session['state'] = "Se creo el artesano con exito"
         return redirect(url_for("index"))
     else:
         conn.close()
@@ -191,7 +192,7 @@ def post_hinchas():
     comuna = request.form.get("comuna")
     deportes = request.form.getlist("deportes")
     transporte = request.form.get("transporte")
-    nombre = request.form.get("name")
+    nombre = request.form.get("name").strip()
     email = request.form.get("mail")
     telefono = request.form.get("phone")
     comentario = request.form.get("coment")

@@ -13,6 +13,29 @@ header a{
     padding: 5px;
 }
 
+.exito{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    top: 50px;
+    left: 15px;
+    right: 15px;
+    bottom: 50px;
+}
+.exito .close{
+    border: 2px solid black;
+    background-color: #f24535;
+    font-size: medium;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 5px;
+}
+.exito h1{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
 .hero{
     height: 500px;
     text-align: center;

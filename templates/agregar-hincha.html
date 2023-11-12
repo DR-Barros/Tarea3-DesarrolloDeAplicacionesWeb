@@ -23,7 +23,7 @@
                 <label for="region">Seleccione su región de procedencia: <span id="region-span"></span></label>
                 <br>
                 <select name="region" id="region">
-                    <option value="">-Elija una de las siguientes comunas-</option>
+                    <option value="">-Elija su región-</option>
                     {% for region in regiones %}
                         <option value="{{region[0]}}">{{region[1]}}</option>
                     {% endfor %}
@@ -33,7 +33,7 @@
                 <label for="comuna">Seleccione Región <span id="comuna-span"></span></label>
                 <br>
                 <select name="comuna" id="comuna" disabled="disabled">
-                    <option value="">Elja primero su región</option>
+                    <option value="">Elja su comuna</option>
                     {% for comuna in comunas %}
                         <option class="{{comuna[2]}}" value="{{comuna[0]}}">{{comuna[1]}}</option>
                     {% endfor %}

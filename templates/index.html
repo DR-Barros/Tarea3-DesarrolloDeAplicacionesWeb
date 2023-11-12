@@ -7,9 +7,9 @@ Panamericanos Santiago
 {% endblock %}
 {% block content %}
     {% if state %}
-    <div class="exito">
-        <button class="close">X</button>
-        <p>{{state}}</p>
+    <div class="exito" id="exito">
+        <button class="close" id="close">Cerrar</button>
+        <h1>{{state}}</h1>
     </div>
     {% endif %}
     <div class="hero">
@@ -31,4 +31,7 @@ Panamericanos Santiago
             <a href="./ver-artesanos">Ver Artesanos</a>
         </div>
     </div>
+{% endblock %}
+{% block js %}
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
 {% endblock %}
