@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+Panamericanos Santiago
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/index.css')}}">
+{% endblock %}
+{% block content %}
+    <div class="hero">
+        {% block img%}
+        <img src="{{url_for('static', filename='img/portada.png')}}" alt="portada de los juegos panamericanos">
+        {% endblock %}
+    </div>
+    <div class="secciones">
+        <div class="sec1">
+            <a href="./agregar-hincha">Registrar Hincha</a>
+        </div>
+        <div class="sec2">
+            <a href="./agregar-artesano">Registrar Artesano</a>
+        </div>
+        <div class="sec3">
+            <a href="./ver-hinchas">Ver Hinchas</a>
+        </div>
+        <div class="sec4">
+            <a href="./ver-artesanos">Ver Artesanos</a>
+        </div>
+    </div>
+{% endblock %}
