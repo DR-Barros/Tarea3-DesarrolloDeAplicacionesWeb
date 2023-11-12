@@ -160,7 +160,7 @@ function agregarArtesano(event){
         // si quiere agregar se avisa que tuvo exito y se grega link a inicio
         //sino vuelve al inventario
         SI.addEventListener("click", e => {
-            const FORM = document.getElementById('form')
+            const FORM = document.getElementById('formulario')
             FORM.submit()
         })
         NO.addEventListener("click", e => {

@@ -56,53 +56,6 @@ def validarArtesano(region, comuna, artesanias, photo, photo2, photo3, nombre, e
     #si paso todo devolver True
     return True
 
-def validarHincha(region, comuna, deportes,  transporte, nombre, email, telefono, comentario, conn):
-    #validar region
-    if int(region) < 1 or int(region) > 16:
-        print("region invalido")
-        return False
-    #validar Comuna
-    com = validarComuna(comuna, conn)
-    print(com)
-    if com == -1 or int(region) != com:
-        print("comuna invalido")
-        return False
-    #validar deportes
-    for t in deportes:
-        if int(t) < 1 or int(t) > 60:
-            print("deporte invalido")
-            return False
-        
-    #validar transporte
-    if transporte != "particular" and transporte != "locomoción pública":
-        print("transporte invalido: ", transporte)
-        return False
-
-    #nombre
-    if len(nombre) < 3 or len(nombre) >80:
-        print("Nombre invalido")
-        return False
-     
-    #mail
-    exprReg = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-    if not re.match(exprReg, email):
-        print("mail invalido")
-        return False
-
-    #celular
-    exprReg = r'^(\+569|9)\d{8}$'
-    if not re.match(exprReg, telefono):
-        print("celu invalido")
-        return False
-
-    #comentario
-    if len(nombre) >80:
-        print("comenaio invalido")
-        return False
-    
-    #si paso todo devolver True
-    return True
-
 #devuelve el id de la region, devuelve -1 si no la encuentra
 def validarComuna(comuna, conn):
     possibleComuna = db.getComuna(conn)

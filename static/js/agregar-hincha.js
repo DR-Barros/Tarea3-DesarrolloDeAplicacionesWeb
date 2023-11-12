@@ -138,12 +138,39 @@ function validar(event){
         // si quiere agregar se avisa que tuvo exito y se grega link a inicio
         //sino vuelve al inventario
         SI.addEventListener("click", e => {
+            e.preventDefault()
             const FORM = document.getElementById('formulario')
-            FORM.submit()
+            asyncSubmit(FORM)
+            form.forEach((e) => {e.style.display = "block"})
         })
         NO.addEventListener("click", e => {
-            FORM.style.display = "block"
+            form.forEach((e) => {e.style.display = "block"})
             MSG.innerHTML = ""
         })
     }
+}
+function asyncSubmit(formulario){
+    const HTTP = new XMLHttpRequest()
+    let data = new FormData(formulario)
+    HTTP.open("POST", '/post-hinchas')
+    HTTP.onload = function() {
+        if (HTTP.status === 200) {
+            let data = JSON.parse(HTTP.responseText)
+            console.log(data)
+            if (data == "exito"){
+                window.location.href = "."
+            } else {
+                const MSG = document.getElementById("msg")
+                data.forEach((d) => {
+                    MSG.innerHTML += `<p> ${d} <p>`
+                })
+            }
+        } else {
+            console.error('Error:', HTTP.statusText)
+        }
+    }
+    HTTP.onerror = function() {
+        console.error('Error de red')
+    }
+    HTTP.send(data)
 }

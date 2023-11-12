@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from db import db
 from utils.validations import *
+import utils.validarHincha as vh
 from werkzeug.utils import secure_filename
 import hashlib
 import filetype
@@ -196,17 +197,20 @@ def post_hinchas():
     email = request.form.get("mail")
     telefono = request.form.get("phone")
     comentario = request.form.get("coment")
-    if validarHincha(region, comuna, deportes, transporte, nombre, email, telefono, comentario, conn):
+    validar = vh.ValidarHincha()
+    valido, errores = validar.validar(region, comuna, deportes, transporte, nombre, email, telefono, comentario, conn)
+    if valido:
         db.addHincha(conn, comuna, transporte, nombre, email, telefono, comentario)
         hincha = db.getLastId(conn)[0][0]
         for d in deportes:
             db.addHinchaDeporte(conn, d, hincha)
         conn.close()
         session['state'] = "Se creo el hincha  con exito"
-        return redirect(url_for("index"))
+        return jsonify("exito")
     else:
+        print(errores)
         conn.close()
-        return redirect(url_for("agregarHincha"))
+        return jsonify(errores)
 
 @app.route('/artesano-data')
 def artesanoData():
